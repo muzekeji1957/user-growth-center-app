@@ -1,0 +1,23 @@
+# Python 字节码 / 缓存
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+
+# 系统 / 编辑器
+.DS_Store
+.idea/
+.vscode/
+Thumbs.db
+
+# 日志 / 本地数据库
+*.log
+*.sqlite
+*.sqlite3
+
+# 预览截图（非源码）
+preview/shots/
+
+# 虚拟环境
+venv/
+.env/

@@ -1,0 +1,333 @@
+/* 用户增长中心 · 大屏与表单增强样式
+   品牌：沐泽浅蓝（主 #16B1A7） + 暖橙强调（#FF6A2C），浅色为主、可切深色。
+*/
+
+:root {
+  --ug-primary: #16B1A7;
+  --ug-primary-d: #0E8B83;
+  --ug-accent: #FF6A2C;
+  --ug-accent-d: #E2561A;
+  --ug-bg: #F4F7FA;
+  --ug-card: #FFFFFF;
+  --ug-text: #1F2A37;
+  --ug-sub: #6B7785;
+  --ug-line: #E3E9F0;
+  --ug-good: #1AA260;
+  --ug-warn: #F2A33C;
+  --ug-bad: #E0533D;
+  --ug-shadow: 0 6px 20px rgba(22, 177, 167, 0.10);
+}
+
+.ug-dark {
+  --ug-bg: #0E1622;
+  --ug-card: #16202E;
+  --ug-text: #E7EEF5;
+  --ug-sub: #93A2B3;
+  --ug-line: #243244;
+  --ug-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+}
+
+#dashboard-root {
+  background: var(--ug-bg);
+  color: var(--ug-text);
+  min-height: 100vh;
+  padding: 18px 22px 40px;
+  font-family: "PingFang SC", "Microsoft YaHei", -apple-system, system-ui, sans-serif;
+}
+
+.ug-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.ug-title {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.ug-title small {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ug-sub);
+  margin-left: 10px;
+}
+
+.ug-title::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 22px;
+  background: linear-gradient(180deg, var(--ug-primary), var(--ug-accent));
+  border-radius: 4px;
+  margin-right: 10px;
+  vertical-align: -3px;
+}
+
+.ug-tools button {
+  border: 1px solid var(--ug-line);
+  background: var(--ug-card);
+  color: var(--ug-text);
+  border-radius: 8px;
+  padding: 6px 12px;
+  margin-left: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.ug-tools button:hover {
+  border-color: var(--ug-primary);
+  color: var(--ug-primary);
+}
+
+.ug-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.ug-kpi {
+  background: var(--ug-card);
+  border-radius: 14px;
+  padding: 16px 18px;
+  box-shadow: var(--ug-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.ug-kpi::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(22, 177, 167, 0.18), transparent 70%);
+}
+
+.ug-kpi .v {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.ug-kpi .l {
+  font-size: 13px;
+  color: var(--ug-sub);
+  margin-top: 6px;
+}
+
+.ug-kpi .d {
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.ug-up { color: var(--ug-good); }
+.ug-down { color: var(--ug-bad); }
+
+.ug-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.ug-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.ug-card {
+  background: var(--ug-card);
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: var(--ug-shadow);
+}
+
+.ug-card h3 {
+  font-size: 15px;
+  margin: 0 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ug-card h3 .tag {
+  font-size: 11px;
+  color: var(--ug-sub);
+  font-weight: 500;
+}
+
+.ug-chart {
+  width: 100%;
+  height: 300px;
+}
+
+.ug-chart.sm { height: 240px; }
+
+.ug-insight {
+  background: linear-gradient(135deg, rgba(22, 177, 167, 0.12), rgba(255, 106, 44, 0.12));
+  border-radius: 14px;
+  padding: 16px 18px;
+  font-size: 14px;
+  line-height: 1.9;
+  margin-bottom: 14px;
+}
+
+.ug-feed {
+  max-height: 300px;
+  overflow: auto;
+  font-size: 13px;
+}
+
+.ug-feed .row {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 4px;
+  border-bottom: 1px dashed var(--ug-line);
+}
+
+.ug-pill {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  margin-right: 6px;
+}
+
+.ug-t-new { background: rgba(26, 162, 96, 0.15); color: var(--ug-good); }
+.ug-t-renew { background: rgba(22, 177, 167, 0.15); color: var(--ug-primary); }
+.ug-t-upgrade { background: rgba(80, 120, 255, 0.15); color: #5078FF; }
+.ug-t-churn { background: rgba(224, 83, 61, 0.15); color: var(--ug-bad); }
+
+.ug-foot {
+  text-align: center;
+  color: var(--ug-sub);
+  font-size: 12px;
+  margin-top: 18px;
+}
+
+/* ---------------- v1.1：预警 / 风险榜 / 健康分 / RFM ---------------- */
+
+.ug-alerts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.ug-alert {
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 13px;
+  line-height: 1.7;
+  border: 1px solid transparent;
+}
+
+.ug-alert.hi {
+  background: rgba(224, 83, 61, 0.10);
+  border-color: rgba(224, 83, 61, 0.35);
+}
+
+.ug-alert.mid {
+  background: rgba(242, 163, 60, 0.10);
+  border-color: rgba(242, 163, 60, 0.35);
+}
+
+.ug-alert.ok {
+  background: rgba(26, 162, 96, 0.10);
+  border-color: rgba(26, 162, 96, 0.30);
+}
+
+.ug-alert .t { font-weight: 700; }
+
+.ug-alert .a {
+  color: var(--ug-sub);
+  font-size: 12px;
+}
+
+.ug-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.ug-risk {
+  max-height: 262px;
+  overflow: auto;
+  font-size: 13px;
+}
+
+.ug-risk-head {
+  display: flex;
+  justify-content: space-between;
+  color: var(--ug-sub);
+  font-size: 11px;
+  padding: 0 4px 6px;
+  border-bottom: 1px solid var(--ug-line);
+}
+
+.ug-risk-row {
+  padding: 8px 4px;
+  border-bottom: 1px dashed var(--ug-line);
+}
+
+.ug-risk-row .who b { font-size: 13px; }
+
+.ug-risk-row .who small {
+  display: block;
+  color: var(--ug-sub);
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+.ug-risk-row .sc {
+  margin-top: 6px;
+  position: relative;
+  height: 18px;
+  background: var(--ug-line);
+  border-radius: 9px;
+  overflow: hidden;
+}
+
+.ug-risk-row .sc i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--ug-bad), var(--ug-warn));
+  border-radius: 9px;
+  opacity: 0.35;
+}
+
+.ug-risk-row .sc .ug-hpill {
+  position: relative;
+  z-index: 1;
+  line-height: 18px;
+  margin-left: 8px;
+}
+
+.ug-hpill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 0 8px;
+  border-radius: 999px;
+}
+
+.hp-good { background: rgba(26, 162, 96, 0.15); color: var(--ug-good); }
+.hp-mid { background: rgba(80, 120, 255, 0.15); color: #5078FF; }
+.hp-warn { background: rgba(242, 163, 60, 0.15); color: var(--ug-warn); }
+.hp-bad { background: rgba(224, 83, 61, 0.15); color: var(--ug-bad); }
+
+.ug-risk-empty {
+  text-align: center;
+  color: var(--ug-sub);
+  padding: 40px 0;
+}

@@ -1,0 +1,173 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:product_code",
+ "creation": "2026-10-15 16:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "product_code",
+  "product_name",
+  "category",
+  "column_break_1",
+  "price",
+  "service_days",
+  "billing_cycle",
+  "section_marketing",
+  "platform",
+  "audience",
+  "column_break_marketing",
+  "selling_point",
+  "is_active",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "product_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "产品编号",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "product_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "产品名称",
+   "reqd": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "产品线",
+   "options": "引流课\n正价课\n私教面授\n智能体定制\n抖音来客\n闲鱼工具\n美团到店\n企业培训",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "标准售价",
+   "options": "CNY"
+  },
+  {
+   "default": "30",
+   "description": "用于推算服务到期日",
+   "fieldname": "service_days",
+   "fieldtype": "Int",
+   "label": "标准服务天数"
+  },
+  {
+   "default": "一次性",
+   "fieldname": "billing_cycle",
+   "fieldtype": "Select",
+   "label": "计费周期",
+   "options": "一次性\n月度\n季度\n年度"
+  },
+  {
+   "fieldname": "section_marketing",
+   "fieldtype": "Section Break",
+   "label": "营销信息"
+  },
+  {
+   "fieldname": "platform",
+   "fieldtype": "Small Text",
+   "label": "投放平台"
+  },
+  {
+   "fieldname": "audience",
+   "fieldtype": "Small Text",
+   "label": "目标人群"
+  },
+  {
+   "fieldname": "column_break_marketing",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "selling_point",
+   "fieldtype": "Small Text",
+   "label": "核心卖点"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "在售"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "产品说明"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-10-15 16:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "User Growth",
+ "name": "Growth Product",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales User",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Growth Analyst",
+   "share": 1
+  }
+ ],
+ "quick_entry": 1,
+ "search_fields": "product_name,category",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "product_name",
+ "track_changes": 1
+}

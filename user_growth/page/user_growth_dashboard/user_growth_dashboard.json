@@ -1,0 +1,17 @@
+{
+ "creation": "2026-10-15 16:00:00.000000",
+ "docstatus": 0,
+ "doctype": "Page",
+ "module": "User Growth",
+ "page_name": "user-growth-dashboard",
+ "title": "用户增长数据大屏",
+ "icon": "octicon octicon-graph",
+ "custom_jquery": 0,
+ "owner": "Administrator",
+ "roles": [
+  {"role": "System Manager"},
+  {"role": "Sales Manager"},
+  {"role": "Sales User"},
+  {"role": "Growth Analyst"}
+ ]
+}

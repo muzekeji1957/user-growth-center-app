@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>用户增长分析报表 · Frappe 预览</title>
+<style>/*__SKIN_CSS__*/</style>
+<script>/*__ECHARTS__*/</script>
+<script>window.UG_DATA = /*__UG_DATA__*/null;</script>
+</head>
+<body>
+<div class="navbar">
+  <div class="logo">用户增长中心</div>
+  <div class="search">搜索…</div>
+  <div class="spacer"></div>
+  <div class="av">管</div>
+</div>
+<div class="layout">
+  <div class="sidebar">
+    <div class="mod">用户增长中心</div>
+    <div class="item">用户服务单据</div>
+    <div class="item">产品目录</div>
+    <div class="item active">用户增长分析报表</div>
+    <div class="item">用户增长数据大屏</div>
+  </div>
+  <div class="content">
+    <div class="page-head">
+      <h1>用户增长分析报表</h1>
+      <div><button class="btn">导出 Excel</button><button class="btn primary">应用筛选</button></div>
+    </div>
+
+    <div class="filterbar">
+      <span>分析视图：</span>
+      <select><option>月度趋势</option><option>渠道维度</option><option>产品线维度</option><option>区域维度</option></select>
+      <span>统计月数：</span>
+      <input type="number" value="13" style="width:70px;" />
+      <button class="btn">刷新</button>
+    </div>
+
+    <div class="summary" id="summary"></div>
+
+    <div class="report-card">
+      <h3>月度增长与流失趋势</h3>
+      <div id="chart" style="width:100%;height:320px;"></div>
+      <table class="dtable" id="trend-table">
+        <thead>
+          <tr>
+            <th>月份</th><th>期初</th><th>新增</th><th>续费</th><th>升级</th>
+            <th>流失</th><th>净增</th><th>期末</th><th>营收(元)</th><th>流失率</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script>
+function load_data(cb){
+  if(window.UG_DATA) return cb(window.UG_DATA);
+  fetch("mock_data.json").then(r=>r.json()).then(cb);
+}
+load_data(function(d){
+  var k=d.kpi, t=d.trend;
+  var sums=[
+    {v:k.active_customers,l:"期末在服客户",c:""},
+    {v:k.month_new,l:"本月新增",c:"green"},
+    {v:k.month_churn,l:"本月流失",c:"red"},
+    {v:"¥"+(k.total_revenue/10000).toFixed(1)+"万",l:"累计营收",c:"green"},
+    {v:(k.churn_rate||0).toFixed(1)+"%",l:"当月流失率",c:"red"}
+  ];
+  document.getElementById("summary").innerHTML=sums.map(function(s){
+    return '<div class="sum"><div class="v '+s.c+'">'+s.v+'</div><div class="l">'+s.l+'</div></div>';
+  }).join("");
+
+  echarts.init(document.getElementById("chart")).setOption({
+    color:["#5078FF","#1AA260","#16B1A7","#FF6A2C","#E0533D"],
+    tooltip:{trigger:"axis"},
+    legend:{top:0},
+    grid:{left:50,right:20,top:36,bottom:30},
+    xAxis:{type:"category",data:t.map(function(x){return x.period;})},
+    yAxis:[{type:"value",name:"客户数"},{type:"value",name:"营收(元)",splitLine:{show:false}}],
+    series:[
+      {name:"期末存量",type:"line",smooth:true,data:t.map(function(x){return x.closing;}),areaStyle:{opacity:.08}},
+      {name:"新增",type:"bar",data:t.map(function(x){return x.new;})},
+      {name:"流失",type:"bar",data:t.map(function(x){return x.churn;})},
+      {name:"营收(元)",type:"line",smooth:true,yAxisIndex:1,data:t.map(function(x){return x.revenue;})}
+    ]
+  });
+
+  document.querySelector("#trend-table tbody").innerHTML=t.map(function(x){
+    var nr=(x.net>=0?'<span class="pos">+'+x.net+'</span>':'<span class="neg">'+x.net+'</span>');
+    return '<tr><td>'+x.period+'</td><td>'+x.opening+'</td><td>'+x.new+'</td><td>'+x.renew+
+      '</td><td>'+x.upgrade+'</td><td>'+x.churn+'</td><td>'+nr+'</td><td>'+x.closing+
+      '</td><td>'+x.revenue.toLocaleString()+'</td><td>'+(x.churn_rate||0).toFixed(1)+'%</td></tr>';
+  }).join("");
+});
+</script>
+</body>
+</html>

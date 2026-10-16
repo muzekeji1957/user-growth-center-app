@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>用户增长数据大屏 · 离线预览</title>
+<style>/*__UG_CSS__*/</style>
+<style>
+  /* 离线预览外框，模拟大屏投放的黑色边框感 */
+  body { margin: 0; background: #0b1018; }
+  .ug-frame { max-width: 1600px; margin: 0 auto; }
+</style>
+</head>
+<body>
+<div class="ug-frame">
+  <div id="dashboard-root">
+    <div class="ug-topbar">
+      <div class="ug-title">用户增长数据大屏<small>User Growth Dashboard · 沐泽科技</small></div>
+      <div class="ug-tools">
+        <button id="ug-refresh">刷新数据</button>
+        <button id="ug-theme">切换深色</button>
+      </div>
+    </div>
+    <div id="ug-kpis" class="ug-kpis"></div>
+    <div class="ug-insight" id="ug-insight">数据加载中…</div>
+    <div class="ug-alerts" id="ug-alerts"></div>
+    <div class="ug-grid">
+      <div class="ug-card">
+        <h3>月度增长与流失趋势<span class="tag">期末存量 / 新增 / 流失 / 营收</span></h3>
+        <div id="ug-trend" class="ug-chart"></div>
+      </div>
+      <div class="ug-card">
+        <h3>获客渠道分布<span class="tag">客户占比</span></h3>
+        <div id="ug-channel" class="ug-chart"></div>
+      </div>
+    </div>
+    <div class="ug-grid">
+      <div class="ug-card">
+        <h3>客群价值分层 RFM<span class="tag">新近度 × 频次 × 消费额</span></h3>
+        <div class="ug-split">
+          <div id="ug-rfm-pie" class="ug-chart sm"></div>
+          <div id="ug-rfm-dot" class="ug-chart sm"></div>
+        </div>
+      </div>
+      <div class="ug-card">
+        <h3>风险客户榜<span class="tag">健康分最低 TOP10</span></h3>
+        <div id="ug-risk" class="ug-risk"></div>
+      </div>
+    </div>
+    <div class="ug-grid">
+      <div class="ug-card">
+        <h3>同期群留存曲线<span class="tag">按开通月分组追踪</span></h3>
+        <div id="ug-retention" class="ug-chart"></div>
+      </div>
+      <div class="ug-card">
+        <h3>客户健康分分布<span class="tag">在服客户</span></h3>
+        <div id="ug-healthpie" class="ug-chart"></div>
+      </div>
+    </div>
+    <div class="ug-grid">
+      <div class="ug-card">
+        <h3>当月流失率走势<span class="tag">按月</span></h3>
+        <div id="ug-churn-rate" class="ug-chart"></div>
+      </div>
+      <div class="ug-card">
+        <h3>流失原因分布<span class="tag">占比</span></h3>
+        <div id="ug-churn-reason" class="ug-chart"></div>
+      </div>
+    </div>
+    <div class="ug-grid-3">
+      <div class="ug-card">
+        <h3>产品线收入 TOP10<span class="tag">营收(元)</span></h3>
+        <div id="ug-product" class="ug-chart sm"></div>
+      </div>
+      <div class="ug-card">
+        <h3>区域客户分布<span class="tag">客户数</span></h3>
+        <div id="ug-region" class="ug-chart sm"></div>
+      </div>
+      <div class="ug-card">
+        <h3>用户生命周期漏斗<span class="tag">留存</span></h3>
+        <div id="ug-funnel" class="ug-chart sm"></div>
+      </div>
+    </div>
+    <div class="ug-card">
+      <h3>实时动态<span class="tag">最新服务事件</span></h3>
+      <div id="ug-feed" class="ug-feed"></div>
+    </div>
+    <div class="ug-foot" id="ug-gen"></div>
+  </div>
+</div>
+<script>/*__ECHARTS__*/</script>
+<script>window.UG_DATA = /*__UG_DATA__*/null;</script>
+<script>/*__UG_JS__*/</script>
+</body>
+</html>

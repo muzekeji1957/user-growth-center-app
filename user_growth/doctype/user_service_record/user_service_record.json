@@ -1,0 +1,364 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "format:USR-{YYYY}-{#####}",
+ "creation": "2026-10-15 16:00:00.000000",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "section_basic",
+  "customer_name",
+  "customer_code",
+  "customer_type",
+  "mobile",
+  "column_break_basic",
+  "region",
+  "channel",
+  "sales_owner",
+  "section_service",
+  "product_line",
+  "product",
+  "service_type",
+  "status",
+  "column_break_service",
+  "amount",
+  "service_start",
+  "service_end",
+  "billing_cycle",
+  "order_ref",
+  "section_churn",
+  "churn_date",
+  "churn_reason",
+  "column_break_churn",
+  "churn_detail",
+  "is_winback",
+  "winback_score",
+  "section_health",
+  "activity_score",
+  "last_active_on",
+  "lifetime_days",
+  "column_break_health",
+  "is_key_account",
+  "nps_type",
+  "section_items",
+  "service_items",
+  "section_more",
+  "remark"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_basic",
+   "fieldtype": "Section Break",
+   "label": "客户信息"
+  },
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "客户名称",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "description": "同一客户多次开通/续费时复用同一编号，用于识别复购",
+   "fieldname": "customer_code",
+   "fieldtype": "Data",
+   "label": "客户编号",
+   "search_index": 1
+  },
+  {
+   "default": "个人",
+   "fieldname": "customer_type",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "客户类型",
+   "options": "个人\n企业\n政府/国企"
+  },
+  {
+   "fieldname": "mobile",
+   "fieldtype": "Data",
+   "label": "联系电话",
+   "options": "Phone",
+   "search_index": 1
+  },
+  {
+   "fieldname": "column_break_basic",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "包头",
+   "fieldname": "region",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "所属区域",
+   "options": "包头\n呼和浩特\n鄂尔多斯\n内蒙古其他\n全国线上",
+   "reqd": 1
+  },
+  {
+   "default": "公众号",
+   "fieldname": "channel",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "获客渠道",
+   "options": "公众号\n小红书\n抖音\n视频号\n美团到店\n闲鱼\n转介绍\n企业直销",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sales_owner",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "负责销售",
+   "options": "User"
+  },
+  {
+   "fieldname": "section_service",
+   "fieldtype": "Section Break",
+   "label": "服务信息"
+  },
+  {
+   "default": "引流课",
+   "fieldname": "product_line",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "产品线",
+   "options": "引流课\n正价课\n私教面授\n智能体定制\n抖音来客\n闲鱼工具\n美团到店\n企业培训",
+   "reqd": 1
+  },
+  {
+   "fieldname": "product",
+   "fieldtype": "Link",
+   "label": "产品/套餐",
+   "options": "Growth Product",
+   "reqd": 1
+  },
+  {
+   "default": "新开通",
+   "fieldname": "service_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "服务动作",
+   "options": "新开通\n续费\n升级\n流失",
+   "reqd": 1
+  },
+  {
+   "default": "有效",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "服务状态",
+   "options": "待激活\n有效\n已流失\n已到期"
+  },
+  {
+   "fieldname": "column_break_service",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "服务金额",
+   "options": "CNY",
+   "reqd": 1
+  },
+  {
+   "fieldname": "service_start",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "服务开始日",
+   "reqd": 1
+  },
+  {
+   "fieldname": "service_end",
+   "fieldtype": "Date",
+   "label": "服务到期日"
+  },
+  {
+   "default": "一次性",
+   "fieldname": "billing_cycle",
+   "fieldtype": "Select",
+   "label": "计费周期",
+   "options": "一次性\n月度\n季度\n年度"
+  },
+  {
+   "fieldname": "order_ref",
+   "fieldtype": "Data",
+   "label": "来源单号"
+  },
+  {
+   "depends_on": "eval:doc.service_type=='流失' || doc.status=='已流失'",
+   "fieldname": "section_churn",
+   "fieldtype": "Section Break",
+   "label": "流失信息"
+  },
+  {
+   "fieldname": "churn_date",
+   "fieldtype": "Date",
+   "label": "流失日期",
+   "mandatory_depends_on": "eval:doc.service_type=='流失'"
+  },
+  {
+   "fieldname": "churn_reason",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "流失原因",
+   "mandatory_depends_on": "eval:doc.service_type=='流失'",
+   "options": "价格偏高\n效果不符预期\n服务到期未续\n转投竞品\n自身业务调整\n失联无响应\n产品下架\n其他"
+  },
+  {
+   "fieldname": "column_break_churn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "churn_detail",
+   "fieldtype": "Small Text",
+   "label": "流失说明"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_winback",
+   "fieldtype": "Check",
+   "label": "可召回"
+  },
+  {
+   "fieldname": "winback_score",
+   "fieldtype": "Int",
+   "label": "召回可能性(0-100)"
+  },
+  {
+   "fieldname": "section_health",
+   "fieldtype": "Section Break",
+   "label": "客户健康度"
+  },
+  {
+   "fieldname": "activity_score",
+   "fieldtype": "Int",
+   "label": "活跃度评分(0-100)"
+  },
+  {
+   "fieldname": "last_active_on",
+   "fieldtype": "Date",
+   "label": "最近活跃日"
+  },
+  {
+   "fieldname": "lifetime_days",
+   "fieldtype": "Int",
+   "label": "生命周期(天)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_health",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_key_account",
+   "fieldtype": "Check",
+   "label": "重点客户"
+  },
+  {
+   "default": "未评估",
+   "fieldname": "nps_type",
+   "fieldtype": "Select",
+   "label": "NPS 分型",
+   "options": "未评估\n推荐者\n中立\n贬损者"
+  },
+  {
+   "fieldname": "section_items",
+   "fieldtype": "Section Break",
+   "label": "服务明细"
+  },
+  {
+   "fieldname": "service_items",
+   "fieldtype": "Table",
+   "label": "服务明细",
+   "options": "User Service Item"
+  },
+  {
+   "fieldname": "section_more",
+   "fieldtype": "Section Break",
+   "label": "备注"
+  },
+  {
+   "fieldname": "remark",
+   "fieldtype": "Text",
+   "label": "备注"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-10-15 16:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "User Growth",
+ "name": "User Service Record",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Growth Analyst",
+   "share": 1
+  }
+ ],
+ "quick_entry": 0,
+ "search_fields": "customer_name,mobile,customer_code,product",
+ "show_title_field_in_link": 1,
+ "sort_field": "service_start",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "customer_name",
+ "track_changes": 1
+}
